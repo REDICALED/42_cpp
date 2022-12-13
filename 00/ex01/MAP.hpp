@@ -2,6 +2,7 @@
 #define MAP_H
 
 #include <iostream>
+#include <iomanip>
 
 class Contact
 {
