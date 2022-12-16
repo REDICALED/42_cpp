@@ -59,33 +59,21 @@ class PhoneBook
 	
 	void	gap_print(std::string str)
 	{
-		unsigned long i = 0;
 		std::cout<<"|";
-		if (str.length() > 10)
+		if (str.size() >= 10)
 		{
-			while (i < 9)
-			{
-				std::cout<<str[i];
-				i++;
-			}
-			std::cout<<".";
+			std::cout<<std::setw(9);
+			std::cout<<str.substr(0,9)<<".";
 		}
 		else
-		{
-			while (i < 10 - str.length())
-			{
-				std::cout<<" ";
-				i++;
-			}
-			std::cout<<str;
-		}
+			std::cout<<std::setw(10)<<str;
 	}
 	void	search()
 	{
 		int i = 0;
 		while (i < add_count && i < 8)
 		{
-			std::cout<<"|         "<<i;
+			std::cout<<"|"<<std::setw(10)<<i;
 			gap_print(Conts[i].first_name);
 			gap_print(Conts[i].last_name);
 			gap_print(Conts[i].nickname);
@@ -94,6 +82,5 @@ class PhoneBook
 		}
 	}
 };
-
 
 #endif
