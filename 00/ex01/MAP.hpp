@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <limits>
 
 class Contact
 {
@@ -68,17 +69,29 @@ class PhoneBook
 		else
 			std::cout<<std::setw(10)<<str;
 	}
-	void	search()
-	{
-		int i = 0;
-		while (i < add_count && i < 8)
-		{
-			std::cout<<"|"<<std::setw(10)<<i;
-			gap_print(Conts[i].first_name);
-			gap_print(Conts[i].last_name);
-			gap_print(Conts[i].nickname);
-			std::cout<<"|"<<std::endl;
-			i++;
+	void	search() {
+		int input;
+		while (1) {
+			if (add_count == 0)
+			{
+				std::cout << "no one here ... (ADD SOMEONE!)" << std::endl;
+				break ;
+			}
+			std::cin >> input;
+			if (std::cin.fail() || input > add_count || input <= 0) {
+				std::cout << "wrong input.. (current phonebook size: "<<add_count << ")"<<std::endl;
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			}
+			else
+			{
+				std::cout<<"|"<<std::setw(10)<<input;
+				gap_print(Conts[input - 1].first_name);
+				gap_print(Conts[input - 1].last_name);
+				gap_print(Conts[input - 1].nickname);
+				std::cout<<"|"<<std::endl;
+				break;
+			}
 		}
 	}
 };

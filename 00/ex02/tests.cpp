@@ -12,6 +12,7 @@
 #include <functional>
 #include "Account.hpp"
 
+
 int		main( void ) {
 	
 	typedef std::vector<Account::t>							  accounts_t;
@@ -21,7 +22,7 @@ int		main( void ) {
 	int	const				amounts[]	= { 42, 54, 957, 432, 1234, 0, 754, 16576 };
 	size_t const			amounts_size( sizeof(amounts) / sizeof(int) );
 	accounts_t				accounts( amounts, amounts + amounts_size );
-	accounts_t::iterator	acc_begin(accounts.begin();
+	accounts_t::iterator	acc_begin	= accounts.begin();
 	accounts_t::iterator	acc_end		= accounts.end();
 	
 	int	const			d[]			= { 5, 765, 564, 2, 87, 23, 9, 20 };
