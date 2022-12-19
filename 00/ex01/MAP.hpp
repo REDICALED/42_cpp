@@ -21,41 +21,33 @@ class PhoneBook
 	int 	index;
 	int 	add_count;
 	public:
+	static int flag;
 	PhoneBook() {
 		index = 0;
 		add_count = 0;
 	}
 	
-	void	add()
+	int	add_print(const char *mes,std::string *number)
 	{
-		std::string number;
-		std::string first_name;
-		std::string last_name;
-		std::string nickname;
-		std::string darkest_secret;
-		
-		std::cout<<"number 입력해주세용"<<std::endl;
-		std::cin>>number;
-		std::cout<<"first_name 입력해주세용"<<std::endl;
-		std::cin>>first_name;
-		std::cout<<"last_name 입력해주세용"<<std::endl;
-		std::cin>>last_name;
-		std::cout<<"nickname 입력해주세용"<<std::endl;
-		std::cin>>nickname;
-		std::cout<<"darkest_secret 입력해주세용"<<std::endl;
-		std::cin>>darkest_secret;
-		if (!number.empty() && !first_name.empty() && !last_name.empty() && !nickname.empty() && !darkest_secret.empty())
-		{
-			if (index == 8)
-				index = 0;
-			Conts[index].number = number;
-			Conts[index].first_name = first_name;
-			Conts[index].last_name = last_name;
-			Conts[index].nickname = nickname;
-			Conts[index].darkest_secret = darkest_secret;
-			index ++;
-			add_count ++;
-		}
+		std::cout<<mes<<std::endl;
+		std::cin>>*number;
+		if (std::cin.eof())
+			exit(1);
+		return 0;
+	}
+	
+	int	add()
+	{
+		if (index == 8)
+			index = 0;
+		add_print("number 입력하세여", &PhoneBook::Conts[index].number);
+		add_print("first_name 입력하세여", &PhoneBook::Conts[index].first_name);
+		add_print("last_name 입력하세여", &PhoneBook::Conts[index].last_name);
+		add_print("nickname 입력하세여", &PhoneBook::Conts[index].nickname);
+		add_print("darkest_secret 입력하세여", &PhoneBook::Conts[index].darkest_secret);
+		index ++;
+		add_count ++;
+		return 0;
 	}
 	
 	void	gap_print(std::string str)

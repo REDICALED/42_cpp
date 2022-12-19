@@ -14,11 +14,13 @@ int main()
 	while (1)
 	{
 		if (flag == 1)
-			std::cout<<"명령을 입력해주세용 ex)ADD, SEARCH, EXIT ..."<<std::endl;
-		std::cin>>command;
+			pb.add_print("명령을 입력해주세용 ex)ADD, SEARCH, EXIT ...", &command);
+		if (flag == 0)
+			pb.add_print("세 명령어만 입력 가능합니다..", &command);
 		if (command == "ADD")
 		{
-			pb.add();
+			if (pb.add())
+				break;
 			flag = 1;
 		}
 		else if(command == "SEARCH")
@@ -27,13 +29,8 @@ int main()
 			flag = 1;
 		}
 		else if(command == "EXIT")
-		{
 			break;
-		}
 		else
-		{
-			std::cout<<"세 명령어만 입력 가능합니다.."<<std::endl;
 			flag = 0;
-		}
 	}
 }
