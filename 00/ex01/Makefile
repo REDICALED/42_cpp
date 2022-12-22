@@ -2,7 +2,10 @@ NAME	=	MAP
 CC		=	c++
 CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror
 
-SRC		=	MAP.cpp
+SRC		=	PhoneBook.cpp \
+			Contact.cpp \
+			main.cpp \
+
 OBJ		=	$(SRC:.cpp=.o)
 
 all		:	$(NAME)

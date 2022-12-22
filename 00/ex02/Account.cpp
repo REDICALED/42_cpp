@@ -9,30 +9,30 @@ int Account::_totalNbWithdrawals = 0;
 
 Account::Account(int initial_deposit) {
 	_displayTimestamp();
-	Account::_accountIndex = Account::_nbAccounts;
-	Account::_amount = initial_deposit;
-	Account::_nbDeposits = 0;
-	Account::_nbWithdrawals = 0;
-	std::cout<<"index:"<<Account::_accountIndex<<";amount:";
-	std::cout<<Account::_amount<<";created"<<std::endl;
-	Account::_nbAccounts ++;
-	Account::_totalAmount += Account::_amount;
+	_accountIndex = _nbAccounts;
+	_amount = initial_deposit;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
+	std::cout<<"index:"<<_accountIndex<<";amount:";
+	std::cout<<_amount<<";created"<<std::endl;
+	_nbAccounts ++;
+	_totalAmount += _amount;
 }
 
 int Account::getNbAccounts(void) {
-	return Account::_nbAccounts;
+	return _nbAccounts;
 }
 
 int Account::getTotalAmount(void) {
-	return Account::_totalAmount;
+	return _totalAmount;
 }
 
 int Account::getNbDeposits(void) {
-	return Account::_totalNbDeposits;
+	return _totalNbDeposits;
 }
 
 int	Account::getNbWithdrawals(void) {
-	return Account::_totalNbWithdrawals;
+	return _totalNbWithdrawals;
 }
 
 void Account::displayAccountsInfos(void) {
