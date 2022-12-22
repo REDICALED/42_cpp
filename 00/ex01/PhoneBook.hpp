@@ -10,10 +10,11 @@ class PhoneBook
 public:
 	static int flag;
 	PhoneBook();
-	int		add_print(const char *mes, std::string *number);
-	int		add_print(const int cont_index);
-	int		add();
-	int 	gap_print(std::string str, int str_index, int input_int);
-	int 	gap_print(int input_int, int str_index);
+	~PhoneBook();
+	void	add_print(const char *mes, std::string *number);
+	void	add_print(const int cont_index);
+	void	add();
+	int 	page_print(std::string str, int str_index, int input_int);
+	int 	page_print(int input_int, int str_index);
 	void	search();
 };
