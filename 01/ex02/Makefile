@@ -1,12 +1,8 @@
-NAME	=	zomvoid
+NAME	=	oh_hi
 CC		=	c++
 CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror
 
 SRC		=	main.cpp \
-			Zombie.cpp \
-			newZombie.cpp \
-			randomChump.cpp \
-
 
 OBJ		=	$(SRC:.cpp=.o)
 
@@ -16,7 +12,7 @@ all		:	$(NAME)
 	$(CC) $(CXXFLAGS) -c $<
 
 $(NAME)	:	$(OBJ)
-	$(CC) $(CXXFLAGS) $(OBJ) -o zomvoid
+	$(CC) $(CXXFLAGS) $(OBJ) -o oh_hi
 
 clean	:
 	rm -rf $(OBJ)
