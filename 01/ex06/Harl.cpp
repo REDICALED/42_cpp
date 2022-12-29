@@ -14,7 +14,7 @@ void Harl::error(void){
 	std::cout<<"This is unacceptable! I want to speak to the manager now."<<std::endl;
 }
 void Harl::so_what(void){
-	std::cout<<"so what. what did you expect??? CAN YOU GET OUT HERE PLEASE ?"<<std::endl;
+	std::cout<<"[ Probably complaining about insignificant problems ]"<<std::endl;
 }
 
 void Harl::complain(std::string level) {
@@ -22,5 +22,27 @@ void Harl::complain(std::string level) {
 	std::string Harl_says[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 	int i = -1;
 	while (level != Harl_says[++i] && i < 4);
-	(this->*(f[i]))();
+	switch(i)
+	{
+		case 0:
+		{
+			(this->*(f[i]))();
+			i++;
+		}
+		case 1:
+		{
+			(this->*(f[i]))();
+			i++;		}
+		case 2:
+		{
+			(this->*(f[i]))();
+			i++;		}
+		case 3:
+		{
+			(this->*(f[i]))();
+			break;
+		}
+		case 4:
+			(this->*(f[i]))();
+	}
 }
