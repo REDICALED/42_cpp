@@ -27,6 +27,14 @@ int main(int argc, char **argv)
 			std::cout<<"s1 or s2 is empty"<<std::endl;
 			exit(1);
 		}
+		if (s1 == s2)
+		{
+			std::string str_tmp = "";
+			std::getline(ifs, str_tmp);
+			const char *output_tmp = str_tmp.c_str();
+			ofs.write(output_tmp, str_tmp.length());
+			ofs.write("\n", 1);
+		}
 		while (!ifs.eof())
 		{
 			std::string str_tmp = "";
