@@ -23,34 +23,41 @@ int main(int argc, char **argv)
 			std::cout << "outfile open fail" << std::endl;
 			exit(1);
 		}
-		if (s1.empty() || s2.empty()) {
-			std::cout<<"s1 or s2 is empty"<<std::endl;
+		if (s1.empty()) {
+			std::cout<<"s1 is empty"<<std::endl;
 			exit(1);
 		}
 		if (s1 == s2)
 		{
-			std::string str_tmp = "";
-			std::getline(ifs, str_tmp);
-			const char *output_tmp = str_tmp.c_str();
-			ofs.write(output_tmp, str_tmp.length());
-			ofs.write("\n", 1);
-		}
-		while (!ifs.eof())
-		{
-			std::string str_tmp = "";
-			std::getline(ifs, str_tmp);
-			int i = 0;
-			while ((i = str_tmp.find(s1)) != -1)
+			while (!ifs.eof())
 			{
-				str_tmp.erase(i, s1.length());
-				str_tmp.insert(i, s2);
+				std::string str_tmp = "";
+				std::getline(ifs, str_tmp);
+				const char *output_tmp = str_tmp.c_str();
+				ofs.write(output_tmp, str_tmp.length());
+				ofs.write("\n", 1);
 			}
-			const char *output_tmp = str_tmp.c_str();
-			ofs.write(output_tmp, str_tmp.length());
-			ofs.write("\n", 1);
+		}
+		else
+		{
+			while (!ifs.eof())
+			{
+				std::string str_tmp = "";
+				std::getline(ifs, str_tmp);
+				int i = 0;
+				while ((i = str_tmp.find(s1)) != -1)
+				{
+					str_tmp.erase(i, s1.length());
+					str_tmp.insert(i, s2);
+				}
+				const char *output_tmp = str_tmp.c_str();
+				ofs.write(output_tmp, str_tmp.length());
+				ofs.write("\n", 1);
+			}
 		}
 		ifs.close();
 		ofs.close();
+		return (0);
 	}
 	else
 	{
