@@ -27,33 +27,24 @@ int main(int argc, char **argv)
 			std::cout<<"s1 is empty"<<std::endl;
 			exit(1);
 		}
-		if (s1 == s2)
+		int find_pos;
+		while (1)
 		{
-			while (!ifs.eof())
+			find_pos = 0;
+			std::string str_tmp = "";
+			std::getline(ifs, str_tmp);
+			if (!ifs.eof())
+				str_tmp.push_back('\n');
+			else
+				break ;
+			while ((find_pos = str_tmp.find(s1, find_pos)) != -1)
 			{
-				std::string str_tmp = "";
-				std::getline(ifs, str_tmp);
-				const char *output_tmp = str_tmp.c_str();
-				ofs.write(output_tmp, str_tmp.length());
-				ofs.write("\n", 1);
+				str_tmp.erase(find_pos, s1.length());
+				str_tmp.insert(find_pos, s2);
+				find_pos = find_pos + s2.length();
 			}
-		}
-		else
-		{
-			while (!ifs.eof())
-			{
-				std::string str_tmp = "";
-				std::getline(ifs, str_tmp);
-				int i = 0;
-				while ((i = str_tmp.find(s1)) != -1)
-				{
-					str_tmp.erase(i, s1.length());
-					str_tmp.insert(i, s2);
-				}
-				const char *output_tmp = str_tmp.c_str();
-				ofs.write(output_tmp, str_tmp.length());
-				ofs.write("\n", 1);
-			}
+			const char *output_tmp = str_tmp.c_str();
+			ofs.write(output_tmp, str_tmp.length());
 		}
 		ifs.close();
 		ofs.close();

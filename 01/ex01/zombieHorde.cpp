@@ -7,5 +7,5 @@ Zombie* zombieHorde( int N, std::string name ){
 		char num = '0' + i;
 		zb_horde[i].set_zombie_name(name + "-" + num);
 	}
-		return (zb_horde);
+	return (zb_horde);
 }
