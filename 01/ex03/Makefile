@@ -1,5 +1,5 @@
 NAME	= louisville_rangers
-CC		=	c++
+CXX		=	c++
 CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror
 
 SRC		=	main.cpp \
@@ -12,10 +12,10 @@ OBJ		=	$(SRC:.cpp=.o)
 all		:	$(NAME)
 
 %.o	: 	%.cpp
-	$(CC) $(CXXFLAGS) -c $<
+	$(CXX) $(CXXFLAGS) -c $<
 
 $(NAME)	:	$(OBJ)
-	$(CC) $(CXXFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean	:
 	rm -rf $(OBJ)
