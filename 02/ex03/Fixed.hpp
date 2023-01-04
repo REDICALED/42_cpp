@@ -17,10 +17,10 @@ public:
 	float toFloat(void) const;
 	int toInt(void) const;
 
-	Fixed  operator*(Fixed const &fix);
-	Fixed  operator/(Fixed const &fix);
-	Fixed  operator+(Fixed const &fix);
-	Fixed  operator-(Fixed const &fix);
+	Fixed  operator*(Fixed const &fix) const;
+	Fixed  operator/(Fixed const &fix) const;
+	Fixed  operator+(Fixed const &fix) const;
+	Fixed  operator-(Fixed const &fix) const;
 	bool  operator>(Fixed const &fix) const;
 	bool  operator<(Fixed const &fix) const;
 	bool  operator>=(Fixed const &fix) const;

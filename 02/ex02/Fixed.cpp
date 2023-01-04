@@ -36,7 +36,8 @@ Fixed::Fixed(const float para){
 }
 
 float Fixed::toFloat(void) const{
-	return static_cast<float>(this->fixed_point) / (1 << this->frac_bit);
+	float return_value = this->fixed_point;
+	return return_value / (1 << this->frac_bit);
 }
 
 int Fixed::toInt(void) const{
@@ -48,22 +49,22 @@ std::ostream& operator<<(std::ostream& out, const Fixed &ref){
 	return (out);
 }
 
-Fixed  Fixed::operator*(Fixed const &fix){
+Fixed  Fixed::operator*(Fixed const &fix) const{
 	Fixed fixed(this->toFloat() * fix.toFloat());
 	return (fixed);
 }
 
-Fixed Fixed::operator/(Fixed const &fix){
+Fixed Fixed::operator/(Fixed const &fix) const{
 	Fixed fixed(this->toFloat() / fix.toFloat());
 	return (fixed);
 }
 
-Fixed Fixed::operator+(Fixed const &fix){
+Fixed Fixed::operator+(Fixed const &fix) const{
 	Fixed fixed(this->toFloat() + fix.toFloat());
 	return (fixed);
 }
 
-Fixed Fixed::operator-(Fixed const &fix){
+Fixed Fixed::operator-(Fixed const &fix) const{
 	Fixed fixed(this->toFloat() - fix.toFloat());
 	return (fixed);
 }

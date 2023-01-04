@@ -20,8 +20,9 @@ Fixed::~Fixed(){
 }
 
 Fixed& Fixed::operator=(const Fixed& og){
+	if (&og != this)
+		this->fixed_point = og.getRawBits();
 	std::cout<<"Copy assignment operator called"<<std::endl;
-	this->fixed_point = og.getRawBits();
 	return *this;
 }
 
@@ -42,7 +43,8 @@ Fixed::Fixed(const float para){
 }
 
 float Fixed::toFloat(void) const{
-	return static_cast<float>(this->fixed_point) / (1 << this->frac_bit);
+	float return_value = this->fixed_point;
+	return return_value / (1 << this->frac_bit);
 }
 
 int Fixed::toInt(void) const{
