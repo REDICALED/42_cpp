@@ -2,8 +2,7 @@
 #include "iostream"
 
 int Fixed::getRawBits( void ) const{
-	std::cout<<"getRawBits member function called"<<std::endl;
-	return (Fixed::fixed_point);
+	return (this->fixed_point);
 }
 
 void Fixed::setRawBits( int const raw ){
@@ -21,6 +20,7 @@ Fixed::~Fixed(){
 }
 
 Fixed& Fixed::operator=(const Fixed& og){
+	std::cout<<"Copy assignment operator called"<<std::endl;
 	this->fixed_point = og.getRawBits();
 	return *this;
 }
@@ -28,28 +28,28 @@ Fixed& Fixed::operator=(const Fixed& og){
 Fixed::Fixed(const Fixed &og)
 {
 	std::cout<<"Copy constructor called"<<std::endl;
-	this->fixed_point = og.getRawBits();
+	*this = og;
 }
 
 Fixed::Fixed(const int para){
 	std::cout<<"Int constructor called"<<std::endl;
-	this->fixed_point = para;
+	this->fixed_point = para<<this->frac_bit;
 }
 
 Fixed::Fixed(const float para){
 	std::cout<<"Float constructor called"<<std::endl;
-	this->fixed_point = para;
+	this->fixed_point = roundf(para * (1 << frac_bit));
 }
 
 float Fixed::toFloat(void) const{
-
+	return static_cast<float>(this->fixed_point) / (1 << this->frac_bit);
 }
 
 int Fixed::toInt(void) const{
-
+	return (this->fixed_point >> this->frac_bit);
 }
 
 std::ostream& operator<<(std::ostream& out, const Fixed &ref){
-	out << ref.getRawBits();
+	out << ref.toFloat();
 	return (out);
 }
