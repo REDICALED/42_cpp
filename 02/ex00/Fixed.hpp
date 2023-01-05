@@ -1,3 +1,5 @@
+#pragma once
+
 class Fixed{
 private:
 	int	fixed_point;
