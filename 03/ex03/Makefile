@@ -1,9 +1,13 @@
-NAME	= clap
+NAME	= diamond
 CC		=	c++
 CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror
 
 SRC		=	main.cpp \
-			ClapTrap.cpp
+			ClapTrap.cpp \
+			ScavTrap.cpp \
+			FragTrap.cpp \
+			DiamondTrap.cpp
+
 
 OBJ		=	$(SRC:.cpp=.o)
 

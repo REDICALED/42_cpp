@@ -6,6 +6,12 @@ ClapTrap::ClapTrap()
 	std::cout << "default constructor!" << std::endl;
 }
 
+ClapTrap::ClapTrap(std::string name, int hit_p, int energy_p, int attack_damage)
+		:name(name),hit_p(hit_p), energy_p(energy_p), attack_damage(attack_damage) {
+	clap_print();
+	std::cout << "detail input constructor!" << std::endl;
+}
+
 ClapTrap::ClapTrap(std::string name)
 		:name(name),hit_p(10), energy_p(10), attack_damage(0) {
 	clap_print();
