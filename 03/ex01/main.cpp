@@ -3,11 +3,8 @@
 
 int main( void ){
 
-	ScavTrap de_fault("zz");
-	de_fault.show_status();
-	de_fault.attack("a");
-	de_fault.beRepaired(10);
-	de_fault.show_status();
-	de_fault.guardGate();
+	ClapTrap *s = new ScavTrap();
+	s->attack("who");
+	delete s;
 	return 0;
 }

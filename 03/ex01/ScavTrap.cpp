@@ -14,6 +14,11 @@ ScavTrap::~ScavTrap(){
 	std::cout<< "Default destructor!" << std::endl;
 }
 
+ScavTrap::ScavTrap():ClapTrap("", 100, 50, 20) {
+	scav_print();
+	std::cout<< "Default constructor!" << std::endl;
+}
+
 void ScavTrap::attack(const std::string& target){
 	scav_print();
 	if (hit_p == 0)
@@ -32,4 +37,14 @@ void ScavTrap::attack(const std::string& target){
 void ScavTrap::guardGate(){
 	scav_print();
 	std::cout<<"Gate Keeper Mode ON ...."<<std::endl;
+}
+
+ScavTrap& ScavTrap::operator=(const ScavTrap &scavTrap){
+	scav_print();
+	std::cout << "assignment operator!" << std::endl;
+	this->name = scavTrap.name;
+	this->attack_damage = scavTrap.attack_damage;
+	this->energy_p = scavTrap.energy_p;
+	this->hit_p = scavTrap.hit_p;
+	return *this;
 }
