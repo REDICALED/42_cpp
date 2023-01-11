@@ -41,10 +41,18 @@ void ScavTrap::guardGate(){
 
 ScavTrap& ScavTrap::operator=(const ScavTrap &scavTrap){
 	scav_print();
-	std::cout << "assignment operator!" << std::endl;
-	this->name = scavTrap.name;
-	this->attack_damage = scavTrap.attack_damage;
-	this->energy_p = scavTrap.energy_p;
-	this->hit_p = scavTrap.hit_p;
+	std::cout << "assignment operator!!!" << std::endl;
+	if (this != &scavTrap) {
+		this->name = scavTrap.name;
+		this->attack_damage = scavTrap.attack_damage;
+		this->energy_p = scavTrap.energy_p;
+		this->hit_p = scavTrap.hit_p;
+	}
 	return *this;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& scavTrap){
+	scav_print();
+	std::cout << "Copy constructor!" << std::endl;
+	*this = scavTrap;
 }

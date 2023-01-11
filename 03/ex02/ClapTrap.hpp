@@ -9,7 +9,7 @@ protected:
 	int attack_damage;
 public:
 	ClapTrap();
-	~ClapTrap();
+	virtual ~ClapTrap();
 	ClapTrap(const ClapTrap& clapTrap);
 	ClapTrap(std::string name);
 	ClapTrap(std::string name, int hit_p, int energy_p, int attack_damage);

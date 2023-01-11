@@ -4,14 +4,26 @@ void ScavTrap::scav_print() {
 	std::cout<<"[SCAV] ";
 }
 
-ScavTrap::ScavTrap(std::string name):ClapTrap(name, 100, 50, 20) {
+ScavTrap::ScavTrap(std::string name){
 	scav_print();
+	ScavTrap::name = name + "_clap_name";
+	ScavTrap::hit_p = ClapTrap::hit_p;
+	ScavTrap::energy_p = 50;
+	ScavTrap::attack_damage = ClapTrap::attack_damage;
 	std::cout << "name input constructor!" << std::endl;
 }
 
-ScavTrap::~ScavTrap() {
+ScavTrap::~ScavTrap(){
 	scav_print();
 	std::cout<< "Default destructor!" << std::endl;
+}
+
+ScavTrap::ScavTrap(){
+	scav_print();
+	ScavTrap::hit_p = ClapTrap::hit_p;
+	ScavTrap::energy_p = 50;
+	ScavTrap::attack_damage = ClapTrap::attack_damage;
+	std::cout<< "Default constructor!" << std::endl;
 }
 
 void ScavTrap::attack(const std::string& target){
@@ -32,4 +44,22 @@ void ScavTrap::attack(const std::string& target){
 void ScavTrap::guardGate(){
 	scav_print();
 	std::cout<<"Gate Keeper Mode ON ...."<<std::endl;
+}
+
+ScavTrap& ScavTrap::operator=(const ScavTrap &scavTrap){
+	scav_print();
+	std::cout << "assignment operator!!!" << std::endl;
+	if (this != &scavTrap) {
+		this->name = scavTrap.name;
+		this->attack_damage = scavTrap.attack_damage;
+		this->energy_p = scavTrap.energy_p;
+		this->hit_p = scavTrap.hit_p;
+	}
+	return *this;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& scavTrap){
+	scav_print();
+	std::cout << "Copy constructor!" << std::endl;
+	*this = scavTrap;
 }

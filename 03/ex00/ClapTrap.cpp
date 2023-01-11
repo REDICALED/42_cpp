@@ -15,10 +15,12 @@ ClapTrap::ClapTrap(std::string name)
 ClapTrap& ClapTrap::operator=(const ClapTrap &clapTrap){
 	clap_print();
 	std::cout << "assignment operator!" << std::endl;
-	this->name = clapTrap.name;
-	this->attack_damage = clapTrap.attack_damage;
-	this->energy_p = clapTrap.energy_p;
-	this->hit_p = clapTrap.hit_p;
+	if (this != &clapTrap) {
+		this->name = clapTrap.name;
+		this->attack_damage = clapTrap.attack_damage;
+		this->energy_p = clapTrap.energy_p;
+		this->hit_p = clapTrap.hit_p;
+	}
 	return *this;
 }
 

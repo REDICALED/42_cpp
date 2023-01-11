@@ -1,6 +1,6 @@
 NAME	= clap
 CC		=	c++
-CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror
+CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror -pedantic
 
 SRC		=	main.cpp \
 			ClapTrap.cpp
