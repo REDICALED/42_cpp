@@ -1,23 +1,23 @@
-#include "Animal.hpp"
-#include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
-Cat::Cat(): Animal("Cat"){
+WrongCat::WrongCat(): WrongAnimal("Wrong_Cat"){
 	cat_print();
 	std::cout << "default constructor!" << std::endl;
 }
 
-Cat::~Cat() {
+WrongCat::~WrongCat() {
 	cat_print();
 	std::cout << "Default destructor! " << std::endl;
 }
 
-Cat::Cat(Cat& cat){
+WrongCat::WrongCat(WrongCat& cat){
 	cat_print();
 	std::cout << "copy constructor!" << std::endl;
 	*this = cat;
 }
 
-Cat& Cat::operator=(Cat& cat){
+WrongCat& WrongCat::operator=(WrongCat& cat){
 	cat_print();
 	std::cout << "assignment operator!" << std::endl;
 	if (this == &cat)
@@ -26,11 +26,11 @@ Cat& Cat::operator=(Cat& cat){
 	return *this;
 }
 
-void Cat::makeSound() const{
+void WrongCat::makeSound() const{
 	cat_print();
 	std::cout<<this->type<<": MEOW ."<<std::endl;
 }
 
-void Cat::cat_print() const{
+void WrongCat::cat_print() const{
 	std::cout<<"[CAT]";
 }

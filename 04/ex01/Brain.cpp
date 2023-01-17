@@ -1,7 +1,9 @@
 #include "Brain.hpp"
 
 Brain::Brain(){
-
+	int i = -1;
+	while (++i < 100)
+		this->ideas[i] = "";
 }
 
 Brain::~Brain(){

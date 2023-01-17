@@ -13,4 +13,6 @@ public:
 	Dog& operator=(Dog& dog);
 	void makeSound() const;
 	void dog_print() const;
+	void set_brain(std::string str);
+	void print_brain(int index) const;
 };

@@ -13,4 +13,6 @@ public:
 	Cat& operator=(Cat& cat);
 	void makeSound() const;
 	void cat_print() const;
+	void set_brain(std::string str);
+	void print_brain(int index) const;
 };

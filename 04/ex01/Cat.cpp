@@ -54,3 +54,25 @@ void Cat::makeSound() const{
 void Cat::cat_print() const{
 	std::cout<<"[CAT]";
 }
+
+void Cat::set_brain(std::string str){
+	int i = -1;
+	while (this->brain->ideas[i] != "")
+		i++;
+	if (i == 100)
+		i = 0;
+	this->brain->ideas[i] = str;
+}
+
+void Cat::print_brain(int index) const{
+	int i = -1;
+	if (index == 100) {
+		while (this->brain->ideas[i] != "")
+		{
+			std::cout<<i<<". "<<this->brain->ideas[i]<<std::endl;
+			i++;
+		}
+	}
+	else
+		std::cout<<i<<". "<<this->brain->ideas[i]<<std::endl;
+}
