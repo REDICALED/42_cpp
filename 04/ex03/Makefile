@@ -2,11 +2,12 @@ NAME	= fire
 CXX		=	c++
 CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror
 
-SRC		=	main.cpp \
-			Cure.cpp \
-			Character.cpp \
-			Ice.cpp \
+SRC		=	AMateria.cpp \
 			MateriaSource.cpp \
+			Character.cpp \
+			Cure.cpp \
+			Ice.cpp \
+			main.cpp \
 
 OBJ		=	$(SRC:.cpp=.o)
 
