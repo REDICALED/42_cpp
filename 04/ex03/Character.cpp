@@ -13,7 +13,16 @@ Character::Character(std::string name): name(name){
 }
 
 Character::~Character(){
-
+	int i = -1;
+	std::cout<<this->name<<std::endl;
+	while(++i < 4)
+	{
+		if (inv[i])
+		{
+			delete inv[i];
+			inv[i] = NULL;
+		}
+	}
 }
 
 Character::Character(Character& character){
@@ -66,6 +75,7 @@ void Character::use(int idx, ICharacter& target){
 	if (this->inv[idx] != NULL)
 	{
 		this->inv[idx]->use(target);
+		delete inv[idx];
 		this->inv[idx] = NULL;
 	}
 	else

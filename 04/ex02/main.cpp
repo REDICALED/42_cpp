@@ -25,8 +25,7 @@ int main( void ){
 	dogo.makeSound();
 	std::cout<<"--------------------"<<std::endl;
 
-	Dog son;
-	son = dogo;
+	Dog son(dogo);
 	son.set_brain( "껌 먹고 싶다!");
 	dogo.print_brain(4); //복사 생성자를 지워서 디폴트로 호출하거나 대입 연산자를 바꿔보면?
 	std::cout<<"--------------------"<<std::endl;

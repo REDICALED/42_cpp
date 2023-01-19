@@ -7,7 +7,7 @@ private:
 	AMateria *inv[4];
 public:
 	Character();
-	~Character();
+	virtual ~Character();
 	Character(Character& character);
 	Character(std::string name);
 	Character& operator=(Character& character);

@@ -1,7 +1,14 @@
 #include "MateriaSource.hpp"
 
 MateriaSource::~MateriaSource(){
-
+	int i = -1;
+	while(++i < 4) {
+		if (memory[i])
+		{
+			delete memory[i];
+			memory[i] = NULL;
+		}
+	}
 }
 
 MateriaSource::MateriaSource(){
