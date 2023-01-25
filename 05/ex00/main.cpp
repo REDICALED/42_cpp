@@ -9,13 +9,16 @@ int main( void ){
 	std::cin>>grade;
 	try
 	{
-		Bureaucrat custom_input(name, grade);
-		custom_input.decrement_grade(10);
+		Bureaucrat is_valid(name, grade);
+		is_valid.decrement_grade(10);
+		is_valid.increment_grade(20);
 	}
-
 	catch (std::exception & e)
 	{
 		std::cout<<e.what();
+		return (1);
 	}
+	Bureaucrat valid_input(name, grade);
+	std::cout<<"okay it's valid input!"<<"\n"<<valid_input<<std::endl;
 	return 0;
 }
