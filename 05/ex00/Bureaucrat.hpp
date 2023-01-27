@@ -6,6 +6,7 @@
 #define Low_Grade 150
 #define High_Grade 1
 
+class Form;
 
 class Bureaucrat{
 public:
@@ -28,7 +29,7 @@ public:
 	};
 	void increment_grade(int input);
 	void decrement_grade(int input);
-
+	void signForm(Form& form);
 private:
 	const std::string name;
 	int grade;
