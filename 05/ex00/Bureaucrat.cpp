@@ -11,7 +11,7 @@ Bureaucrat::~Bureaucrat(){
 Bureaucrat::Bureaucrat(Bureaucrat& bureaucrat):name(bureaucrat.name), grade(bureaucrat.grade){
 };
 
-Bureaucrat& Bureaucrat::operator=(Bureaucrat& bureaucrat){
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& bureaucrat){
 	if (this == &bureaucrat)
 		return *this;
 	this->grade = bureaucrat.grade;
