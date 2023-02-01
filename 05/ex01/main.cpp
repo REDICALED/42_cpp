@@ -1,29 +1,39 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include <unistd.h>
 
 int main( void ){
 	int grade;
 	std::string name;
+	int test_form_grade;
 	std::cout<<"please input your name! :";
 	std::cin>>name;
 	std::cout<<"please input your grade! :";
 	std::cin>>grade;
+	std::cout<<"please input the form grade of want to sign. (ex_grade is 150) :";
+	std::cin>>test_form_grade;
+	int flag = 0;
 	try
 	{
 		Bureaucrat is_valid(name, grade);
-
+		Form test_form("test",150,test_form_grade);
+		test_form.beSigned(is_valid);
+		flag = 2;
 	}
 	catch (std::exception & e)
 	{
 		std::cout<<e.what();
-		return (1);
+		flag = 1;
 	}
-	Bureaucrat valid_input(name, grade);
-	std::cout<<"okay it's valid input!"<<"\n"<<valid_input<<std::endl;
-	Form orm("form", 100, 100);
-	valid_input.signForm(orm);
-	Bureaucrat valid_input2("two", 100);
-	valid_input2.signForm(orm);
-	std::cout<<orm;
+	if (flag == 1) {
+		std::cout << "[sign failed ...]\n" <<std::endl;
+	}
+	else if (flag == 2)
+	{
+		Bureaucrat is_valid(name, grade);
+		Form test_form("input_test_FORM",150,test_form_grade);
+		std::cout << "[okay it's valid input!]\n" << is_valid << std::endl;
+		is_valid.signForm(test_form);
+	}
 	return 0;
 }

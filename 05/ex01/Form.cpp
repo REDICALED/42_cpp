@@ -37,6 +37,10 @@ int Form::get_ex_Grade() const{
 	return re_ex_grade;
 }
 
+bool Form::get_is_signed(){
+	return _signed;
+}
+
 const char *Form::GradeTooHighException::what() const throw() {
 	return "Form Grade too high!\n";
 }

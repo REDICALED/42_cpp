@@ -20,7 +20,7 @@ public:
 	public:
 		const char* what() const throw();
 	};
-
+	bool get_is_signed();
 	int get_ex_Grade() const;
 	int get_sign_Grade() const;
 	std::string getName() const;
