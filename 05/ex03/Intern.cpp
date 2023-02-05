@@ -42,12 +42,12 @@ AForm* Intern::makeForm(std::string form_name, std::string target_form){
 	int i = -1;
 	while (form_name != Forms[++i] && i < 3);
 	if (i == 3)
-		throw not_exist_form();
+		throw NotExistForm();
 	AForm* form = (this->*(f[i]))(target_form);
 	std::cout << "Intern creates " << form->getName() << std::endl;
 	return form;
 }
 
-const char* Intern::not_exist_form::what() const throw(){
+const char* Intern::NotExistForm::what() const throw(){
 	return "no form such of that name !\n";
 }
