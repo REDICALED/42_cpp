@@ -99,34 +99,29 @@ void Scala::find_type(const std::string& str){
 		if (is_char(tmp_double, end_ptr))
 		{
 			sc_type = lchar;
-			std::cout<<"is char!"<<std::endl;
-			std::cout<<sc_char<<std::endl;
+			std::cout<<"input tpye is char!"<<std::endl;
 		}
 		else if (sc_type == 0 && is_int(tmp_double, end_ptr))
 		{
 			sc_type = lint;
-			std::cout<<"is int!"<<std::endl;
-			std::cout<<sc_int<<std::endl;
+			std::cout<<"input tpye is int!"<<std::endl;
 		}
 		else if (sc_type == 0 && is_double(tmp_double, end_ptr))
 		{
 			sc_type = ldouble;
-			std::cout<<"is double!"<<std::endl;
-			std::cout<<sc_double<<std::endl;
+			std::cout<<"input tpye is double!"<<std::endl;
+
 		}
 		else if (sc_type == 0 && is_float(tmp_double, end_ptr))
 		{
 			sc_type = lfloat;
-			std::cout<<"is float!"<<std::endl;
-			std::cout<<sc_float<<std::endl;
+			std::cout<<"input tpye is float!"<<std::endl;
+			
 		}
-	std::cout<<"double: "<<tmp_double<<std::endl;
-	std::cout<<"end_ptr: "<<*end_ptr<<std::endl;
-	std::cout<<"len str: "<<sc_str.length()<<std::endl;
 	std::cout<<"------------------------"<<std::endl;
 }
 
-Scala::Scala(const std::string& str):sc_type(0),sc_str(str),sc_inf(0)
+Scala::Scala(const std::string& str):sc_type(0),sc_str(str),sc_inf(0),is_valid(0)
 {	
 	try{
 		find_type(str);
@@ -155,6 +150,17 @@ Scala::Scala(const std::string& str):sc_type(0),sc_str(str),sc_inf(0)
 				sc_int = static_cast<int>(sc_double);
 				break;
 		}
+		is_valid = 1;
+	}
+	catch(std::exception& e)
+	{
+		std::cout<<e.what()<<std::endl;
+	}
+}
+
+void Scala::print_values(void){
+	if(is_valid)
+	{
 		if (isprint(sc_char))
 			std::cout<<"char: '"<<sc_char<<"'"<<std::endl;
 		else if (tmp_double > CHAR_MAX || tmp_double < CHAR_MIN|| std::isinf(tmp_double) || std::isnan(tmp_double))
@@ -171,14 +177,6 @@ Scala::Scala(const std::string& str):sc_type(0),sc_str(str),sc_inf(0)
 			std::cout<<"float: "<<sc_float<<"f"<<std::endl;
 		std::cout<<"double: "<<sc_double<<std::endl;
 	}
-	catch(std::exception& e)
-	{
-		std::cout<<e.what()<<std::endl;
-	}
-}
-
-void Scala::print_values(void){
-	std::cout<<"a"<<std::endl;
 }
 
 const char* Scala::ParseError::what() const throw(){
@@ -196,6 +194,12 @@ const char* Scala::OverFlow::what() const throw(){
 Scala& Scala::operator=(Scala& scala){
 	if (this == &scala)
 		return *this;
-	//put some..
+	sc_type = scala.sc_type;
+	sc_char = scala.sc_char;
+	sc_double = scala.sc_double;
+	sc_float = scala.sc_float;
+	sc_inf = scala.sc_inf;
+	sc_int = scala.sc_int;
+	sc_type = scala.sc_type;
 	return *this;
 }

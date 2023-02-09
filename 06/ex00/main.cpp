@@ -14,6 +14,7 @@ int main(int argc, char **argv) {
 	}
 	else {
 		Scala s(argv[1]);
+		s.print_values();
 	}
 	return 0;
 }

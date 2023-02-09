@@ -4,7 +4,6 @@
 
 class Scala{
 public:
-	Scala();
 	~Scala();
 	Scala(const std::string& str);
 	Scala(Scala& scala);
@@ -24,6 +23,7 @@ public:
 			const char* what() const throw();
 	};
 private:
+	Scala();
 	void	find_type(const std::string& str);
 	int		is_char(double tmp_double, char* end_ptr);
 	int		is_int(double tmp_double, char* end_ptr);
@@ -36,7 +36,7 @@ private:
 	lfloat = 3,
 	ldouble = 4
 	};
-
+	
 	int sc_type;
 	const std::string sc_str;
 	double sc_double;
@@ -45,4 +45,5 @@ private:
 	float sc_float;
 	bool sc_inf;
 	double tmp_double;
+	bool is_valid;
 };
