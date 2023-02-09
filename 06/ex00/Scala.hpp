@@ -8,7 +8,6 @@ public:
 	Scala(const std::string& str);
 	Scala(Scala& scala);
 	void print_values(void);
-	Scala& operator=(Scala& scala);
 	class ParseError: public std::exception{
 		public:
 			const char* what() const throw();
@@ -24,6 +23,7 @@ public:
 	};
 private:
 	Scala();
+	Scala& operator=(Scala& scala);
 	void	find_type(const std::string& str);
 	int		is_char(double tmp_double, char* end_ptr);
 	int		is_int(double tmp_double, char* end_ptr);
@@ -38,7 +38,7 @@ private:
 	};
 	
 	int sc_type;
-	const std::string sc_str;
+	std::string sc_str;
 	double sc_double;
 	int sc_int;
 	char sc_char;
@@ -46,4 +46,7 @@ private:
 	bool sc_inf;
 	double tmp_double;
 	bool is_valid;
+	int	sc_point_len;
+	int sc_valid_len;
+	bool sc_zero;
 };

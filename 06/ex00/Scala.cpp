@@ -7,6 +7,7 @@
 #include <float.h>
 #include <cmath>
 #include <errno.h>
+#include <iomanip>
 
 Scala::Scala(){
 
@@ -22,13 +23,23 @@ Scala::Scala(Scala& scala){
 
 int Scala::is_float(double tmp_double, char* end_ptr)
 {
-	(void)tmp_double;
 	if (end_ptr[0] == 'f' && end_ptr[1] == 0)
 	{
 		if (sc_str.find('.',0) != std::string::npos) //0f 예외처리
 		{
 			if ((tmp_double > FLT_MAX || tmp_double < -FLT_MAX))
 				throw OverFlow();
+			const char* ptr = strchr(sc_str.c_str(), '.');
+			if (ptr)
+			{
+				if (tmp_double < 0)
+					sc_valid_len = sc_str.length() - strlen(ptr) - 1;
+				else	
+					sc_valid_len = sc_str.length() - strlen(ptr);
+				sc_point_len = strlen(ptr) - 2;
+				if (sc_point_len == 0)
+					sc_point_len = 1;
+			}
 			sc_float = tmp_double;
 			return 1;
 		}
@@ -46,13 +57,24 @@ int Scala::is_float(double tmp_double, char* end_ptr)
 
 int Scala::is_double(double tmp_double, char* end_ptr)
 {
-	(void)tmp_double;
 	if (!*end_ptr) 
 	{
 		if ((std::isinf(tmp_double) || std::isnan(tmp_double)) && sc_str.length() > 4)
 			throw OverFlow();
 		if ((std::isinf(tmp_double) || std::isnan(tmp_double)))
 			sc_inf = 1;
+		const char* ptr = strchr(sc_str.c_str(), '.');
+		if (ptr)
+		{
+			
+			if (tmp_double < 0)
+				sc_valid_len = sc_str.length() - strlen(ptr) - 1;
+			else
+				sc_valid_len = sc_str.length() - strlen(ptr);
+			sc_point_len = strlen(ptr) - 1;
+			if (sc_point_len == 0)
+				sc_point_len = 1;
+		}
 		sc_double = tmp_double;
 		return 1;
 	}
@@ -110,18 +132,16 @@ void Scala::find_type(const std::string& str){
 		{
 			sc_type = ldouble;
 			std::cout<<"input tpye is double!"<<std::endl;
-
 		}
 		else if (sc_type == 0 && is_float(tmp_double, end_ptr))
 		{
 			sc_type = lfloat;
 			std::cout<<"input tpye is float!"<<std::endl;
-			
 		}
 	std::cout<<"------------------------"<<std::endl;
 }
 
-Scala::Scala(const std::string& str):sc_type(0),sc_str(str),sc_inf(0),is_valid(0)
+Scala::Scala(const std::string& str):sc_type(0),sc_str(str),sc_inf(0),is_valid(0),sc_point_len(1),sc_zero(0)
 {	
 	try{
 		find_type(str);
@@ -174,8 +194,11 @@ void Scala::print_values(void){
 		if(((!std::isinf(tmp_double)) && std::isinf(sc_float)) || (!std::isnan(tmp_double) && std::isnan(sc_float)))
 			std::cout<<"float: impossible"<<std::endl;
 		else
-			std::cout<<"float: "<<sc_float<<"f"<<std::endl;
-		std::cout<<"double: "<<sc_double<<std::endl;
+		{	
+			std::cout<< std::fixed << std::setprecision(sc_point_len) <<"float: "<<sc_float <<"f"<<std::endl;
+		}
+		std::cout<< std::fixed << std::setprecision(sc_point_len) <<"double: "<<sc_double <<std::endl;
+			
 	}
 }
 
@@ -194,12 +217,6 @@ const char* Scala::OverFlow::what() const throw(){
 Scala& Scala::operator=(Scala& scala){
 	if (this == &scala)
 		return *this;
-	sc_type = scala.sc_type;
-	sc_char = scala.sc_char;
-	sc_double = scala.sc_double;
-	sc_float = scala.sc_float;
-	sc_inf = scala.sc_inf;
-	sc_int = scala.sc_int;
-	sc_type = scala.sc_type;
+	std::cout<<"do not use operator ... ~"<<std::endl;
 	return *this;
 }
