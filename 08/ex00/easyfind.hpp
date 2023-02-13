@@ -2,13 +2,28 @@
 #include <deque>
 #include <iostream>
 #include <list>
-#include <stdexcept>
 #include <string>
 #include <vector>
 
 template<typename T>
-void easyfind(T one, int second)
+int easyfind(T &one, int second)
 {
+    typename T::iterator iter = one.begin();
     
-    typename T::iterator iter = std::find()
+    while (iter != one.end())
+    {
+        if (second == *iter)
+        {
+            std::cout<<"\"I found it!\"";
+            std::cout<<" input: "<<second <<", iter: "<<*iter<<std::endl;
+            break;
+        }
+        ++iter;
+    }
+    if (iter == one.end())
+    {
+        std::cout<<"I can't found it.."<<std::endl;
+        return (1);
+    }
+    return (0);
 }
