@@ -26,33 +26,31 @@ int main( void ){
 	try
 	{
 		Bureaucrat is_valid(name, grade);
+		flag = 1;
 		forms[test_grade - 1]->beSigned(is_valid);
 		std::cout<<"[ okay sign is fine !]"<<std::endl;
-		flag = 3;
-
-		forms[test_grade - 1]->execute(is_valid);
-
 		flag = 2;
-
+		forms[test_grade - 1]->execute(is_valid);
 	}
 
 	catch (std::exception & e)
 	{
 		std::cout<<e.what();
-		if (flag != 3)
-			flag = 1;
+		if (flag == 1)
+			std::cout<< "[sign failed ...]" <<std::endl;
+		else if (flag == 2)
+			std::cout << "[execute failed ...]" <<std::endl;
+		else
+		{
+			std::cout << "[ ! (1 <= input <= 150) ! ]" <<std::endl;
+			return 1;
+		}
+		int i = -1;
+		while (++i < 3)
+			delete(forms[i]);
+		return 1;
 	}
-	if (flag == 1) {
-		std::cout << "[sign failed ...]" <<std::endl;
-	}
-	else if (flag == 2)
-	{
-		std::cout << "[ sign and execute all Fine!! ]" <<std::endl;
-	}
-	else if (flag == 3)
-	{
-		std::cout << "[execute failed ...]" <<std::endl;
-	}
+	std::cout << "[ sign and execute all Fine!! ]" <<std::endl;
 	int i = -1;
 	while (++i < 3)
 		delete(forms[i]);

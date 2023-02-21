@@ -9,11 +9,11 @@ Form::~Form(){
 
 }
 
-Form::Form(Form& form): name(form.name),_signed(form._signed), re_ex_grade(form.re_ex_grade), re_sign_grade(form.re_sign_grade) {
+Form::Form(const Form& form): name(form.name),_signed(form._signed), re_ex_grade(form.re_ex_grade), re_sign_grade(form.re_sign_grade) {
 
 }
 
-Form& Form::operator=(Form& form){
+Form& Form::operator=(const Form& form){
 	std::cout<<"공문서("<<form.name<<"), 새 용지에서 작성해주세요."<<std::endl;
 	return *this;
 }
@@ -63,6 +63,6 @@ void Form::beSigned(Bureaucrat& bureaucrat){
 
 std::ostream& operator<<(std::ostream& os, const Form& form) {
 	os <<"Form Name: ["<< form.getName() <<"], required to sign grade: "<<form.get_sign_Grade()<<" and" \
-	<<" required to execute grade: "<<form.get_ex_Grade()<<std::endl;
+	<<" required to execute grade: "<<form.get_ex_Grade();
 	return os;
 }

@@ -6,7 +6,7 @@ ShrubberyCreationForm:: ~ShrubberyCreationForm(){
 
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm& shrubberyCreationForm): AForm(shrubberyCreationForm.getName(),shrubberyCreationForm.get_ex_Grade(),shrubberyCreationForm.get_sign_Grade()), target(shrubberyCreationForm.target){
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& shrubberyCreationForm): AForm(shrubberyCreationForm.getName(),shrubberyCreationForm.get_ex_Grade(),shrubberyCreationForm.get_sign_Grade()), target(shrubberyCreationForm.target){
 
 }
 

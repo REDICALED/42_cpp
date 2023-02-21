@@ -9,11 +9,11 @@ AForm::~AForm(){
 
 }
 
-AForm::AForm(AForm& form): name(form.name),_signed(form._signed), re_ex_grade(form.re_ex_grade), re_sign_grade(form.re_sign_grade) {
+AForm::AForm(const AForm& form): name(form.name),_signed(form._signed), re_ex_grade(form.re_ex_grade), re_sign_grade(form.re_sign_grade) {
 
 }
 
-AForm& AForm::operator=(AForm& form){
+AForm& AForm::operator=(const AForm& form){
 	std::cout<<"공문서("<<form.name<<"), 새 용지에서 작성해주세요."<<std::endl;
 	return *this;
 }
@@ -75,6 +75,6 @@ void  AForm::general_form_check(Bureaucrat const & executor) const{
 
 std::ostream& operator<<(std::ostream& os, const AForm& form) {
 	os <<"AForm Name: ["<< form.getName() <<"], required to sign grade: "<<form.get_sign_Grade()<<" and" \
-	<<" required to execute grade: "<<form.get_ex_Grade()<<std::endl;
+	<<" required to execute grade: "<<form.get_ex_Grade();
 	return os;
 }

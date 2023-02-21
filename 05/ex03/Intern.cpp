@@ -12,11 +12,11 @@ Intern::~Intern(){
 
 }
 
-Intern::Intern(Intern& intern){
+Intern::Intern(const Intern& intern){
 	*this = intern;
 }
 
-Intern& Intern::operator=(Intern& intern){
+Intern& Intern::operator=(const Intern& intern){
 	(void)intern;
 	return *this;
 }

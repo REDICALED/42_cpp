@@ -1,6 +1,5 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
-#include <unistd.h>
 
 int main( void ){
 	int grade;
@@ -23,17 +22,12 @@ int main( void ){
 	catch (std::exception & e)
 	{
 		std::cout<<e.what();
-		flag = 1;
-	}
-	if (flag == 1) {
 		std::cout << "[sign failed ...]\n" <<std::endl;
+		return 1;
 	}
-	else if (flag == 2)
-	{
-		Bureaucrat is_valid(name, grade);
-		Form test_form("input_test_FORM",150,test_form_grade);
-		std::cout << "[okay it's valid input!]\n" << is_valid << std::endl;
-		is_valid.signForm(test_form);
-	}
+	Bureaucrat is_valid(name, grade);
+	Form test_form("input_test_FORM",150,test_form_grade);
+	std::cout << "[okay it's valid input!]\n" << is_valid << std::endl;
+	is_valid.signForm(test_form);
 	return 0;
 }

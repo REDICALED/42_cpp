@@ -6,7 +6,7 @@ PresidentialPardonForm:: ~PresidentialPardonForm(){
 
 }
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm& presidentialPardonForm): AForm(presidentialPardonForm.getName(),presidentialPardonForm.get_ex_Grade(),presidentialPardonForm.get_sign_Grade()), target(presidentialPardonForm.target){
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& presidentialPardonForm): AForm(presidentialPardonForm.getName(),presidentialPardonForm.get_ex_Grade(),presidentialPardonForm.get_sign_Grade()), target(presidentialPardonForm.target){
 
 }
 

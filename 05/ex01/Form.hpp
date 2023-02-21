@@ -6,9 +6,8 @@ class Bureaucrat;
 
 class Form{
 public:
-	Form();
 	~Form();
-	Form(Form& form);
+	Form(const Form& form);
 
 	Form(std::string name, int re_ex_grade, int re_sign_grade);
 
@@ -20,6 +19,7 @@ public:
 	public:
 		const char* what() const throw();
 	};
+
 	bool get_is_signed();
 	int get_ex_Grade() const;
 	int get_sign_Grade() const;
@@ -31,7 +31,8 @@ private:
 	bool _signed;
 	const int re_ex_grade;
 	const int re_sign_grade;
-	Form& operator=(Form& form);
+	Form& operator=(const Form& form);
+	Form();
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& form);

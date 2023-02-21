@@ -8,7 +8,7 @@ RobotomyRequestForm:: ~RobotomyRequestForm(){
 
 }
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm& robotomyRequestForm): AForm(robotomyRequestForm.getName(),robotomyRequestForm.get_ex_Grade(),robotomyRequestForm.get_sign_Grade()), target(robotomyRequestForm.target){
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& robotomyRequestForm): AForm(robotomyRequestForm.getName(),robotomyRequestForm.get_ex_Grade(),robotomyRequestForm.get_sign_Grade()), target(robotomyRequestForm.target){
 
 }
 
