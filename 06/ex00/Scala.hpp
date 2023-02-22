@@ -8,11 +8,7 @@ public:
 	Scala(const std::string& str);
 	Scala(Scala& scala);
 	void print_values(void);
-	class ParseError: public std::exception{
-		public:
-			const char* what() const throw();
-	};
-
+	
 	class BadInput: public std::exception{
 		public:
 			const char* what() const throw();
@@ -48,5 +44,4 @@ private:
 	bool is_valid;
 	int	sc_point_len;
 	int sc_valid_len;
-	bool sc_zero;
 };

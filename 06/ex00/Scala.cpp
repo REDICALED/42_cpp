@@ -6,7 +6,6 @@
 #include <limits.h>
 #include <float.h>
 #include <cmath>
-#include <errno.h>
 #include <iomanip>
 
 Scala::Scala(){
@@ -121,27 +120,27 @@ void Scala::find_type(const std::string& str){
 		if (is_char(tmp_double, end_ptr))
 		{
 			sc_type = lchar;
-			std::cout<<"input tpye is char!"<<std::endl;
+			std::cout<<"input type is char!"<<std::endl;
 		}
 		else if (sc_type == 0 && is_int(tmp_double, end_ptr))
 		{
 			sc_type = lint;
-			std::cout<<"input tpye is int!"<<std::endl;
+			std::cout<<"input type is int!"<<std::endl;
 		}
 		else if (sc_type == 0 && is_double(tmp_double, end_ptr))
 		{
 			sc_type = ldouble;
-			std::cout<<"input tpye is double!"<<std::endl;
+			std::cout<<"input type is double!"<<std::endl;
 		}
 		else if (sc_type == 0 && is_float(tmp_double, end_ptr))
 		{
 			sc_type = lfloat;
-			std::cout<<"input tpye is float!"<<std::endl;
+			std::cout<<"input type is float!"<<std::endl;
 		}
 	std::cout<<"------------------------"<<std::endl;
 }
 
-Scala::Scala(const std::string& str):sc_type(0),sc_str(str),sc_inf(0),is_valid(0),sc_point_len(1),sc_zero(0)
+Scala::Scala(const std::string& str):sc_type(0),sc_str(str),sc_inf(0),is_valid(0),sc_point_len(1)
 {	
 	try{
 		find_type(str);
@@ -200,10 +199,6 @@ void Scala::print_values(void){
 		std::cout<< std::fixed << std::setprecision(sc_point_len) <<"double: "<<sc_double <<std::endl;
 			
 	}
-}
-
-const char* Scala::ParseError::what() const throw(){
-	return "Parse Error.";
 }
 
 const char* Scala::BadInput::what() const throw(){
