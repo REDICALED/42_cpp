@@ -1,11 +1,10 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(){
+BitcoinExchange::~BitcoinExchange(){
 
 }
 
-BitcoinExchange::~BitcoinExchange(){
-
+BitcoinExchange::BitcoinExchange(){
 }
 
 int BitcoinExchange::date_checker(std::string str_date){
@@ -13,25 +12,21 @@ int BitcoinExchange::date_checker(std::string str_date){
 	int tm_year;
 	int tm_month;
 	int tm_day;
-
 	char minus1;
 	char minus2;
 	std::tm timeinfo = {};
 	iss >> tm_year >> minus1 >> tm_month >> minus2 >> tm_day;
-
-
-    timeinfo.tm_year = tm_year - 1900;
-    timeinfo.tm_mon = tm_month - 1;
-    timeinfo.tm_mday = tm_day;
-    
+	timeinfo.tm_year = tm_year - 1900;
+	timeinfo.tm_mon = tm_month - 1;
+	timeinfo.tm_mday = tm_day;
 	if (std::mktime(&timeinfo) == -1 || minus1 != '-' || minus2 != '-'|| timeinfo.tm_year != tm_year - 1900|| timeinfo.tm_mon != tm_month - 1|| timeinfo.tm_mday != tm_day)
 		return 1;
 	return 0;
 }
 
 
-void BitcoinExchange::make_csv_map(){
-		std::ifstream data_csv("data.csv");
+void BitcoinExchange::make_csv_map(std:: string str){
+		std::ifstream data_csv(str);
 		if(!data_csv.is_open())
 		{
 			std::cout << "Error: data csv file open fail" << std::endl;
@@ -111,27 +106,13 @@ void BitcoinExchange::bit_checker(char *str){
 		input_ifs.close();
 }
 
-
-BitcoinExchange::BitcoinExchange(int argc, char **argv){
-	if (argc <= 1)
-		std::cout<<"Error: could not open file."<<std::endl;
-	else if (argc == 2)
-	{
-		make_csv_map();
-		bit_checker(argv[1]);
-	}
-	else
-	{
-		std::cout<<"Error: too many input files."<<std::endl;
-	}
-}
-
-BitcoinExchange::BitcoinExchange(BitcoinExchange& bitcoinExchange){
-	(void)bitcoinExchange;
+BitcoinExchange::BitcoinExchange(BitcoinExchange& bitcoinExchange):input_file(bitcoinExchange.input_file),csv_map(bitcoinExchange.csv_map){
 }
 
 BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange& bitcoinExchange){
 	if (this == &bitcoinExchange)
 		return *this;
+	this->input_file = bitcoinExchange.input_file;
+	this->csv_map = bitcoinExchange.csv_map;
 	return *this;
 }

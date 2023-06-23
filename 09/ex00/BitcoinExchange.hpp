@@ -5,22 +5,21 @@
 #include <map>
 #include <cstring>
 #include <stdlib.h>
-#include <unistd.h>
 #include <ctime>
 #include <iomanip>
 #include <sstream>
+
 class BitcoinExchange{
 public:
 	~BitcoinExchange();
 	BitcoinExchange(BitcoinExchange& bitcoinExchange);
-	BitcoinExchange(int argc, char **argv);
+	BitcoinExchange& operator=(BitcoinExchange& bitcoinExchange);
+	void bit_checker(char *str);
+	BitcoinExchange();
+	void make_csv_map(std::string str);
 
 private:
-	BitcoinExchange();
-	BitcoinExchange& operator=(BitcoinExchange& bitcoinExchange);
 	std::string input_file;
 	std::map<std::string, float> csv_map;
-	void make_csv_map();
-	void bit_checker(char *str);
 	int date_checker(std::string str_date);
 };
