@@ -22,4 +22,5 @@ private:
 	std::map<std::string, float> csv_map;
 	void make_csv_map();
 	void bit_checker(char *str);
+	int date_checker(std::string str_date);
 };
