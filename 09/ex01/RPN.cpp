@@ -5,11 +5,15 @@ RPN::RPN(){
 }
 void RPN::check_loop(){
 	int i = 0;
+	int index = 0;
 	while(input_str[i])
 	{
-		if (input_str[i] >= '0' && input_str[i] <= '9')
+		if (input_str[i] >= '0' && input_str[i] <= '9' && index%2 == 0)
+		{
 			main_stack.push(input_str[i] - 48);
-		else if (input_str[i] == '+' || input_str[i] == '/' || input_str[i] == '-' || input_str[i] == '*' )
+			index ++;
+		}
+		else if ((input_str[i] == '+' || input_str[i] == '/' || input_str[i] == '-' || input_str[i] == '*' ) && index%2 == 0)
 		{
 			if(main_stack.size() < 2)
 			{
@@ -51,8 +55,10 @@ void RPN::check_loop(){
 					main_stack.push(tmp);
 				}
 			}
+			index ++;
 		}
-		else if (input_str[i] == ' ');
+		else if (input_str[i] == ' ')
+			index = 0;
 		else
 		{
 			std::cout<<"Error"<<std::endl;
@@ -60,6 +66,11 @@ void RPN::check_loop(){
 		}
 		i ++;
 	}
+	if (main_stack.size() > 1)
+	{
+			std::cout<<"Error"<<std::endl;
+			exit(1);
+		}
 	std::cout<<main_stack.top()<<std::endl;
 }
 
