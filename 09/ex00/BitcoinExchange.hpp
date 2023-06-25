@@ -15,10 +15,11 @@ public:
 	BitcoinExchange(BitcoinExchange& bitcoinExchange);
 	BitcoinExchange& operator=(BitcoinExchange& bitcoinExchange);
 	void bit_checker(char *str);
-	BitcoinExchange();
 	void make_csv_map(std::string str);
+	BitcoinExchange(const char *str);
 
 private:
+	BitcoinExchange();
 	std::string input_file;
 	std::map<std::string, float> csv_map;
 	int date_checker(std::string str_date);

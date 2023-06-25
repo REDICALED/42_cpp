@@ -5,8 +5,7 @@ int main(int argc, char **argv){
 		std::cout<<"Error: could not open file."<<std::endl;
 	else if (argc == 2)
 	{
-		BitcoinExchange main_bt;
-		main_bt.make_csv_map("data.csv");
+		BitcoinExchange main_bt("data.csv");
 		main_bt.bit_checker(argv[1]);
 	}
 	else

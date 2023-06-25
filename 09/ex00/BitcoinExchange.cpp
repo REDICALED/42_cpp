@@ -7,6 +7,10 @@ BitcoinExchange::~BitcoinExchange(){
 BitcoinExchange::BitcoinExchange(){
 }
 
+BitcoinExchange::BitcoinExchange(const char *str){
+	make_csv_map(str);
+}
+
 int BitcoinExchange::date_checker(std::string str_date){
 	std::istringstream iss(str_date);
 	int tm_year;
@@ -66,42 +70,47 @@ void BitcoinExchange::bit_checker(char *str){
 		}
 		while (std::getline(input_ifs, tmp_line) && !tmp_line.empty())
 		{
-			char *temp = std::strtok(const_cast<char*>(tmp_line.c_str()),"|");
-			std::string map_in1 = temp;
-			temp = strtok(NULL, "|");
-			float map_in2;
-			if(date_checker(map_in1))
+			std::string	str_date;
+			std::string	vertical;
+			std::string	str_value;
+			std::istringstream iss(tmp_line);
+			char *endptr = NULL;
+			double	tod_value;
+
+			iss >> str_date >> vertical >> str_value;
+			if(date_checker(str_date))
 			{
-			std::cout<<"Error: bad input => "<<tmp_line <<std::endl;
+			std::cout<<"Error: bad input => "<<str_date <<std::endl;
 				continue;
 			}
-			if (temp)
-				map_in2 = std::atof(temp);
-			else
+			tod_value = std::strtod(str_value.c_str(), &endptr);
+			if (std::strlen(endptr) != 0)
 			{
-				std::cout<<"Error: bad input => "<<tmp_line <<std::endl;
-				continue;
-			}			
-			std::map<std::string, float>::iterator itr = csv_map.lower_bound(map_in1);
-			if (!itr->first.compare(map_in1))
-			{
-				if (map_in2 > 0 && map_in2 < 1000)		
-					std::cout<< itr->first << " => "<< map_in2 << " = " << map_in2 * itr->second<<std::endl;
-				else if(map_in2 <= 0)
-					std::cout<<"Error: not a positive number."<<std::endl;
-				else
-					std::cout<<"Error: too large a number."<<std::endl;
+				std::cout<<"Error: bad input => "<<str_value <<std::endl;
+					continue;
 			}
-			else
+			if (tod_value > 1000)
 			{
+				std::cout << "Error: too large a number." << std::endl;
+				continue;
+			}
+			if (tod_value < 0)
+			{
+				std::cout << "Error: not a positive number." << std::endl;
+				continue;
+			}
+			if (vertical != "|")
+			{
+				std::cout << "Error: It's not a correct delimeter." << std::endl;
+				continue;
+			}
+		std::map<std::string, float>::iterator itr = csv_map.lower_bound(str_date);
+		if ((*itr).first != str_date)
+		{
+			if (itr != csv_map.begin())
 				itr--;
-				if (map_in2 > 0 && map_in2 < 1000)		
-					std::cout<< itr->first << " => "<< map_in2 << " = " << map_in2 * itr->second<<std::endl;
-				else if(map_in2 <= 0)
-					std::cout<<"Error: not a positive number."<<std::endl;
-				else
-					std::cout<<"Error: too large a number."<<std::endl;
-			}
+		}
+		std::cout<< itr->first << " => "<< tod_value << " = " << tod_value * itr->second<<std::endl;
     }
 		input_ifs.close();
 }
